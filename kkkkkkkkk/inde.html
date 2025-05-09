@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/style.css">
+  <title>Raças de Cachorro</title>
+</head>
+<body>
+  <h2>Escolha uma raça e cor</h2>
+
+  <label>Raça:</label>
+  <select id="racaSelect"></select>
+
+  <label>Cor:</label>
+  <select id="corSelect"></select>
+
+  <button onclick="mostrarCachorro()">Mostrar</button>
+
+  <div id="resultado"></div>
+
+  <script>
+    // Superclasse Animal
+    class Animal {
+      constructor(patas, olhos) {
+        this.patas = patas;
+        this.olhos = olhos;
+      }
+    }
+
+    // Subclasse Cachorro
+    class Cachorro extends Animal {
+      constructor(patas, olhos, raca, cor) {
+        super(patas, olhos);
+        this.raca = raca;
+        this.cor = cor;
+      }
+    }
+
+    // Raças com descrição e imagem
+    const racas = {
+      "Labrador": {
+        descricao: "Amigável e brincalhão.",
+        cores: ["Amarelo", "Chocolate", "Preto"],
+        imagem: "img/imagem22.jpg"
+      },
+      "Poodle": {
+        descricao: "Inteligente e obediente.",
+        cores: ["Branco", "Cinza", "Marrom"],
+        imagem: "img/images.jpg"
+      },
+      "Bulldog": {
+        descricao: "Tranquilo e companheiro.",
+        cores: ["Branco", "Tigrado", "Caramelo"],
+        imagem: "img/images (1).jpg"
+      },
+      "Husky": {
+        descricao: "Ativo e resistente ao frio.",
+        cores: ["Preto e Branco", "Cinza", "Vermelho"],
+        imagem: "img/download.jpg"
+      }
+    };
+
+    const racaSelect = document.getElementById("racaSelect");
+    const corSelect = document.getElementById("corSelect");
+
+   
+    for (let raca in racas) {
+      let opt = document.createElement("option");
+      opt.value = raca;
+      opt.textContent = raca;
+      racaSelect.appendChild(opt);
+    }
+
+  
+    racaSelect.addEventListener("change", () => {
+      const cores = racas[racaSelect.value].cores;
+      corSelect.innerHTML = "";
+      cores.forEach(cor => {
+        let opt = document.createElement("option");
+        opt.value = cor;
+        opt.textContent = cor;
+        corSelect.appendChild(opt);
+      });
+    });
+
+  
+    racaSelect.dispatchEvent(new Event("change"));
+
+    function mostrarCachorro() {
+      const raca = racaSelect.value;
+      const cor = corSelect.value;
+      const dados = racas[raca];
+
+      const cachorro = new Cachorro(4, 2, raca, cor);
+
+      document.getElementById("resultado").innerHTML = `
+        <h3>${cachorro.raca} (${cachorro.cor})</h3>
+        <p>${dados.descricao}</p>
+        <p>Patas: ${cachorro.patas}, Olhos: ${cachorro.olhos}</p>
+        <img src="${dados.imagem}" alt="Foto do ${cachorro.raca}">
+      `;
+    }
+  </script>
+</body>
+</html>
