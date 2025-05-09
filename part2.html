@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulação de Dados</title>
+  <style>
+    #resultados {
+      font-size: 1.5em;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Simulação de Lançamento de Dados</h1>
+
+  <button onclick="girarDados()">Girar Dados</button>
+
+  <div id="resultados">
+    <p>D6: <span id="resultadoD6">-</span></p>
+    <p>D8: <span id="resultadoD8">-</span></p>
+    <p>D20: <span id="resultadoD20">-</span></p>
+  </div>
+
+  <script>
+   
+    function gerarNumeroAleatorio(limite) {
+      return Math.floor(Math.random() * limite) + 1; 
+    }
+
+    function girarDados() {
+   
+      const resultadoD6 = gerarNumeroAleatorio(6);
+      const resultadoD8 = gerarNumeroAleatorio(8);
+      const resultadoD20 = gerarNumeroAleatorio(20);
+
+      
+      document.getElementById('resultadoD6').textContent = resultadoD6;
+      document.getElementById('resultadoD8').textContent = resultadoD8;
+      document.getElementById('resultadoD20').textContent = resultadoD20;
+    }
+  </script>
+
+</body>
+</html>
