@@ -19,15 +19,12 @@
   <div id="resultado"></div>
 
   <script>
-    // Superclasse Animal
     class Animal {
       constructor(patas, olhos) {
         this.patas = patas;
         this.olhos = olhos;
       }
     }
-
-    // Subclasse Cachorro
     class Cachorro extends Animal {
       constructor(patas, olhos, raca, cor) {
         super(patas, olhos);
@@ -35,8 +32,6 @@
         this.cor = cor;
       }
     }
-
-    // Raças com descrição e imagem
     const racas = {
       "Labrador": {
         descricao: "Amigável e brincalhão.",
